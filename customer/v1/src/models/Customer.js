@@ -10,7 +10,7 @@ const CustomerSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Address",
-        require: true,
+        required: true,
       },
     ],
     cart: [
@@ -18,7 +18,7 @@ const CustomerSchema = new mongoose.Schema(
         product: {
           _id: {
             type: String,
-            require: true,
+            required: true,
           },
           name: {
             type: String,
@@ -32,7 +32,7 @@ const CustomerSchema = new mongoose.Schema(
         },
         unit: {
           type: Number,
-          require: true,
+          required: true,
         },
       },
     ],
@@ -40,7 +40,7 @@ const CustomerSchema = new mongoose.Schema(
       {
         _id: {
           type: String,
-          require: true,
+          required: true,
         },
         name: {
           type: String,
