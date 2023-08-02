@@ -2,6 +2,7 @@ const express = require("express");
 const config = require("./config/index");
 const loaders = require("./loaders/index");
 const errorHandler = require("./middlewares/error-handler.middleware");
+const { customerRoutes, addressRoutes } = require("./api-routes");
 
 config();
 loaders();
@@ -9,10 +10,11 @@ loaders();
 const app = express();
 app.use(express.json());
 
-app.use("/", (req, res, next) => {
-  return res.status(200).json({
-    msg: "Hello from Customer Service",
-  });
+app.use("/", customerRoutes);
+app.use("/address", addressRoutes);
+
+app.use((req, res, next) => {
+  next(new ApiError("Endpoint not found. Please enter valid enpoint", httpStatus.BAD_REQUEST));
 });
 
 app.use(errorHandler);
